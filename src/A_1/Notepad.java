@@ -9,15 +9,15 @@ public class Notepad {
         notes = new ArrayList<>();
     }
 
-    public void printNotes(){
+    public void printNotes() {
         for (Note n : notes) {
             System.out.println(n);
         }
     }
 
-    public void printNotes(int dateOfNote){
-        for (Note n : notes){
-            if (n.dateOfNote == dateOfNote){
+    public void printNotes(int dateOfNote) {
+        for (Note n : notes) {
+            if (n.dateOfNote == dateOfNote) {
                 System.out.println(n);
             }
         }
