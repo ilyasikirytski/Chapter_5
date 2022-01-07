@@ -25,10 +25,10 @@ public class RecordBook {
 
     public void printHistory() {
         for (String w : session.sessionHistory) {
-            System.out.println("История: " +w);
+            System.out.println("История: " + w);
         }
         for (String w : exam.examHistory) {
-            System.out.println("История: " +w);
+            System.out.println("История: " + w);
         }
         for (String w : test.testHistory) {
             System.out.println("История : " + w);
