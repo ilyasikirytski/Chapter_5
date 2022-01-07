@@ -7,7 +7,7 @@ public class Payment {
 
     public void buy(String bread) {
         if (this.bread.productName.equals(bread)) {
-            System.out.println("Вы купили: " + this.bread.productName + " за " + this.bread.price +"$");
+            System.out.println("Вы купили: " + this.bread.productName + " за " + this.bread.price + "$");
         }
     }
 
