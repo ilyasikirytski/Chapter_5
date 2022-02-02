@@ -2,6 +2,7 @@ package A_4;
 
 import java.util.ArrayList;
 
+// TODO абсолютно идентичен логике в RecordBook, смысл то же
 public class RecordBook {
 
     private final RecordBook.Session session = new RecordBook.Session();

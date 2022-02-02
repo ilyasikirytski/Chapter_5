@@ -1,5 +1,6 @@
 package Kot_B_6
 
+// TODO сначала переделать Java каталог, потом этот
 class KotCatalog() {
     private val book = Book()
     fun printRequestHistory() {
