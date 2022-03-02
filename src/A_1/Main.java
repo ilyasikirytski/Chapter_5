@@ -8,12 +8,11 @@ package A_1;
 public class Main {
     public static void main(String[] args) {
         Notepad notepad = new Notepad();
-        notepad.addNote(1, "one");
-        notepad.addNote(1, "second");
-        notepad.addNote(2, "two");
-        notepad.addNote(3, "three");
-        notepad.addNote(4, "four");
-
+        notepad.addNote(notepad.new Note(1, "one"));
+        notepad.addNote(notepad.new Note(1, "second"));
+        notepad.addNote(notepad.new Note(2, "two"));
+        notepad.addNote(notepad.new Note(3, "three"));
+        notepad.addNote(notepad.new Note(4, "four"));
 
         notepad.printNotes();
     }
