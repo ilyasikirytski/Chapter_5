@@ -1,78 +1,87 @@
 package A_2;
 
-// TODO ок... допустим это лпатеж, или другими словами корзина, но почему у тебя при создании "корзины"
-//  в ней сразу же создается и хлеб с молоком и помидорами? если на сайт зайдешь для онлайн заказа и тебе
-//  так в корзину всего напихают интересно будет?)
-//  ну и вроде как в корзине обычно список покупок (можно использовать наследование и сделать абстрактный
-//  интерфейс "покупка" с ценой и названием, а потом унаследоваться и создать разные товары
+import java.util.ArrayList;
+
 public class Payment {
-    private final Bread bread = new Bread();
-    private final Milk milk = new Milk();
-    private final Tomato tomato = new Tomato();
+    int countOfMoney;
+    int totalPrice = 0;
+    ArrayList<Product> cart = new ArrayList<>();
 
-    // TODO почему покупки забрасываются в корзину по имени? и почему метод вроде как "купить" - по логике
-    //  должен добавить в корзину элемент, а он вообще непонятно что делает)))
-    public void buy(String bread) {
-        if (this.bread.productName.equals(bread)) {
-            System.out.println("Вы купили: " + this.bread.productName + " за " + this.bread.price + "$");
+    public Payment(int countOfMoney) {
+        this.countOfMoney = countOfMoney;
+    }
+
+    public void addToCart(Product... namesOfProduct) {
+        for (Product product : namesOfProduct) {
+            totalPrice += product.getPrice();
+            cart.add(product);
+            System.out.printf("%s Успешно добавлено в корзину\n", product.getProductName());
         }
     }
 
-    // TODO а если хочу только молоко?))
-    public void buy(String bread, String milk) {
-        if (this.bread.productName.equals(bread) && this.milk.productName.equals(milk)) {
-            int price = this.bread.price + this.milk.price;
-            System.out.println("Вы купили: " + this.bread.productName + " и " + this.milk.productName +
-                    " за " + price + "$");
+    public void buy(int countOfMoney) {
+        if (countOfMoney - totalPrice >= 0) {
+            System.out.println("Вы купили: ");
+            for (Product product : cart) {
+                System.out.println(product.getProductName());
+                countOfMoney -= product.getPrice();
+            }
+            System.out.println("За " + totalPrice + " рублей. У вас осталось: " + countOfMoney + " рублей");
+        } else {
+            System.out.println("Не хватает денег");
         }
     }
 
-    public void buy(String bread, String milk, String tomato) {
-        if (this.bread.productName.equals(bread) && this.milk.productName.equals(milk) && this.tomato.productName.equals(tomato)) {
-            int price = this.bread.price + this.milk.price + this.tomato.price;
-            System.out.println("Вы купили: " + this.bread.productName + " и " + this.milk.productName +
-                    " за " + price + "$");
+    abstract class Product {
+        private String productName;
+        private int price;
+
+        public String getProductName() {
+            return productName;
+        }
+
+        public int getPrice() {
+            return price;
+        }
+
+        @Override
+        public String toString() {
+            return "Product{" +
+                    "name='" + productName + '\'' +
+                    ", price=" + price +
+                    '}';
         }
     }
 
-    // TODO почему без конструктора? то есть хлеб может быть только один и только с одной ценой?
+    // TOD почему без конструктора? то есть хлеб может быть только один и только с одной ценой?
     //  то же самое про молоко и помидоры
-    public static class Bread {
-        String productName = "bread";
-        int price = 5;
+    public class Bread extends Product {
+        private String productName = "bread";
+        private int price = 3;
 
-        @Override
-        public String toString() {
-            return "Bread{" +
-                    "productName='" + productName + '\'' +
-                    ", price=" + price +
-                    '}';
+        public Bread() {
+            super.productName = this.productName;
+            super.price = this.price;
         }
     }
 
-    public static class Milk {
-        String productName = "milk";
-        int price = 9;
+    public class Milk extends Product {
+        private String productName = "milk";
+        private int price = 9;
 
-        @Override
-        public String toString() {
-            return "Milk{" +
-                    "productName='" + productName + '\'' +
-                    ", price=" + price +
-                    '}';
+        public Milk() {
+            super.productName = this.productName;
+            super.price = this.price;
         }
     }
 
-    public static class Tomato {
-        String productName = "tomato";
-        int price = 12;
+    public class Tomato extends Product {
+        private String productName = "tomato";
+        private int price = 12;
 
-        @Override
-        public String toString() {
-            return "Tomato{" +
-                    "productName='" + productName + '\'' +
-                    ", price=" + price +
-                    '}';
+        public Tomato() {
+            super.productName = this.productName;
+            super.price = this.price;
         }
     }
 }

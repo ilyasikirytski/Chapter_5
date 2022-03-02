@@ -6,8 +6,14 @@ package A_2;
 
 public class Main {
     public static void main(String[] args) {
-        Payment payment = new Payment();
-        payment.buy("bread", "milk", "tomato");
+        int countOfMoney = 15;
 
+        Payment payment = new Payment(countOfMoney);
+        Payment.Bread bread = payment.new Bread();
+        Payment.Milk milk = payment.new Milk();
+        Payment.Tomato tomato = payment.new Tomato();
+
+        payment.addToCart(bread, milk);
+        payment.buy(countOfMoney);
     }
 }
