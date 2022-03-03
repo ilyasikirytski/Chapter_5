@@ -15,7 +15,7 @@ public class Main {
         catalog.takeBook(book2, "11");
         catalog.takeBook(book2, "22");
         catalog.takeBook(book2, "33");
-        catalog.printRequestHistory("1");
-        catalog.printRequestHistory("2");
+        catalog.printRequestHistory(book);
+        catalog.printRequestHistory(book2);
     }
 }

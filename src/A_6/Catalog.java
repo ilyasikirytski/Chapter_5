@@ -5,10 +5,10 @@ import java.util.ArrayList;
 public class Catalog {
     private final ArrayList<Book> books = new ArrayList<>();
 
-    public void printRequestHistory(String nameOfBook) {
-        System.out.printf("Книгу: %s, брали следующие пользователи:\n", nameOfBook);
-        for (Book book : books) {
-            if (book.getNameOfBook().contains(nameOfBook)) {
+    public void printRequestHistory(Book book) {
+        System.out.printf("Книгу: %s, брали следующие пользователи:\n", book.getNameOfBook());
+        for (Book b : books) {
+            if (b.getNameOfBook().contains(book.getNameOfBook())) {
                 System.out.println(book.getUsers());
             }
         }
