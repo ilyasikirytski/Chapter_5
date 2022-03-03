@@ -3,12 +3,10 @@ package A_2;
 import java.util.ArrayList;
 
 public class Payment {
-    int countOfMoney;
-    int totalPrice = 0;
-    ArrayList<Product> cart = new ArrayList<>();
+    private int totalPrice = 0;
+    private final ArrayList<Product> cart = new ArrayList<>();
 
-    public Payment(int countOfMoney) {
-        this.countOfMoney = countOfMoney;
+    public Payment() {
     }
 
     public void addToCart(Product... namesOfProduct) {
@@ -32,7 +30,7 @@ public class Payment {
         }
     }
 
-    abstract class Product {
+    public abstract class Product {
         private String productName;
         private int price;
 
@@ -43,45 +41,26 @@ public class Payment {
         public int getPrice() {
             return price;
         }
-
-        @Override
-        public String toString() {
-            return "Product{" +
-                    "name='" + productName + '\'' +
-                    ", price=" + price +
-                    '}';
-        }
     }
 
-    // TOD почему без конструктора? то есть хлеб может быть только один и только с одной ценой?
-    //  то же самое про молоко и помидоры
     public class Bread extends Product {
-        private String productName = "bread";
-        private int price = 3;
-
         public Bread() {
-            super.productName = this.productName;
-            super.price = this.price;
+            super.productName = "bread";
+            super.price = 3;
         }
     }
 
     public class Milk extends Product {
-        private String productName = "milk";
-        private int price = 9;
-
         public Milk() {
-            super.productName = this.productName;
-            super.price = this.price;
+            super.productName = "milk";
+            super.price = 9;
         }
     }
 
     public class Tomato extends Product {
-        private String productName = "tomato";
-        private int price = 12;
-
         public Tomato() {
-            super.productName = this.productName;
-            super.price = this.price;
+            super.productName = "tomato";
+            super.price = 12;
         }
     }
 }

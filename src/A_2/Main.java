@@ -8,7 +8,7 @@ public class Main {
     public static void main(String[] args) {
         int countOfMoney = 15;
 
-        Payment payment = new Payment(countOfMoney);
+        Payment payment = new Payment();
         Payment.Bread bread = payment.new Bread();
         Payment.Milk milk = payment.new Milk();
         Payment.Tomato tomato = payment.new Tomato();
