@@ -2,49 +2,60 @@ package A_4;
 
 import java.util.ArrayList;
 
-// TODO абсолютно идентичен логике в RecordBook, смысл то же
 public class RecordBook {
-
-    private final RecordBook.Session session = new RecordBook.Session();
-    private final RecordBook.Exam exam = new RecordBook.Exam();
-    private final RecordBook.Test test = new RecordBook.Test();
+    ArrayList<History> histories = new ArrayList<>();
 
     public void setSession(String result) {
-        session.sessionHistory.add("Сессия " + result);
+        histories.add(new Session("Сессия " + result));
         System.out.println("Сессия " + result);
     }
 
     public void setExam(String result) {
-        exam.examHistory.add("Экзамен: " + result);
+        histories.add(new Exam("Экзамен: " + result));
         System.out.println("Экзамен " + result);
     }
 
     public void setTest(String result) {
-        test.testHistory.add("Зачёт: " + result);
+        histories.add(new Test("Зачёт: " + result));
         System.out.println("Зачёт " + result);
     }
 
     public void printHistory() {
-        for (String w : session.sessionHistory) {
-            System.out.println("История: " + w);
-        }
-        for (String w : exam.examHistory) {
-            System.out.println("История: " + w);
-        }
-        for (String w : test.testHistory) {
-            System.out.println("История : " + w);
+        for (History history : histories) {
+            System.out.println("История: " + history);
         }
     }
 
-    public static class Session {
-        ArrayList<String> sessionHistory = new ArrayList<>();
+    public abstract class History {
+        private String history;
+
+        public History(String history) {
+            this.history = history;
+        }
+
+        @Override
+        public String toString() {
+            return "History{" +
+                    "history='" + history + '\'' +
+                    '}';
+        }
     }
 
-    public static class Exam {
-        ArrayList<String> examHistory = new ArrayList<>();
+    public class Session extends History {
+        public Session(String history) {
+            super(history);
+        }
     }
 
-    public static class Test {
-        ArrayList<String> testHistory = new ArrayList<>();
+    public class Exam extends History {
+        public Exam(String history) {
+            super(history);
+        }
+    }
+
+    public class Test extends History {
+        public Test(String history) {
+            super(history);
+        }
     }
 }
