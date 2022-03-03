@@ -2,24 +2,39 @@ package A_6;
 
 import java.util.ArrayList;
 
-// TODO идентично department
 public class Catalog {
-    // TODO одна книга в библиотеке?))
-    private final Catalog.Book book = new Catalog.Book();
+    private final ArrayList<Book> books = new ArrayList<>();
 
-    public void printRequestHistory() {
-        for (String s : book.requestHistory) {
-            System.out.println(s);
+    public void printRequestHistory(String nameOfBook) {
+        System.out.printf("Книгу: %s, брали следующие пользователи:\n", nameOfBook);
+        for (Book book : books) {
+            if (book.getNameOfBook().contains(nameOfBook)) {
+                System.out.println(book.getUsers());
+            }
         }
     }
 
-    public void makeRequest(String book, String clientName) {
-        this.book.requestHistory.add(book + clientName);
+    public void takeBook(Book book, String user) {
+        if (!books.contains(book)) {
+            books.add(book);
+        }
+        book.users.add(user);
     }
 
-    // TODO а когда берешь книгу к ней тебе дают еще три - список людей которые ее брали, точнее это
-    //  написано в конце книги, ее просто расширяют)))
     public static class Book {
-        ArrayList<String> requestHistory = new ArrayList<>();
+        private final String nameOfBook;
+        private final ArrayList<String> users = new ArrayList<>();
+
+        public Book(String nameOfBook) {
+            this.nameOfBook = nameOfBook;
+        }
+
+        public String getNameOfBook() {
+            return nameOfBook;
+        }
+
+        public ArrayList<String> getUsers() {
+            return users;
+        }
     }
 }
