@@ -2,52 +2,60 @@ package A_3;
 
 import java.util.ArrayList;
 
-// TODO все то же самое что и для корзины/покупки, в идеале у тебя для счета можно получить список операций
-//  которые он и хранит. То есть опять же наследование (абстрактный класс "операция" и потом наследники с разным
-//  типом - пополнение/снятие и тд)
 public class Account {
-    private final Withdrawals withdrawals = new Withdrawals();
-    private final Payments payments = new Payments();
-    private final Receipts receipts = new Receipts();
+    ArrayList<Operations> histories = new ArrayList<>();
 
     public void makeWithdraw(int amountOfPayment) {
-        withdrawals.withrawalsHistory.add("Вывод средств на сумму " + amountOfPayment);
+        histories.add(new Withdrawals("Вывод средств на сумму " + amountOfPayment));
         System.out.println("Возьмите ваши: " + amountOfPayment);
     }
 
     public void makePayment(String purpouse, int amountSum) {
-        payments.paymentsHistory.add("Совершение платежа: " + purpouse + " на сумму " + amountSum);
+        histories.add(new Payments("Совершение платежа: " + purpouse + " на сумму " + amountSum));
         System.out.println("Платёж совершён!");
     }
 
     public void makeReceipts(int amountSum) {
-        receipts.receiptsHistory.add("Поступление средств на сумму: " + amountSum);
+        histories.add(new Receipts("Поступление средств на сумму: " + amountSum));
         System.out.println("Платёж поступил!");
     }
 
-    // TODO по дублирование кода в методах выше и тут вполне очевидно что что-то пошло не так) читай то что сверху)
     public void printHistory() {
-        for (String w : receipts.receiptsHistory) {
-            System.out.println(w);
-        }
-        for (String w : payments.paymentsHistory) {
-            System.out.println(w);
-        }
-        for (String w : withdrawals.withrawalsHistory) {
-            System.out.println(w);
+        for (Operations operations : histories) {
+            System.out.println(operations);
         }
     }
 
-    // TODO немного странное использование списка операций внутри операции, зачем класс то, опять же читай то что выше
-    public static class Withdrawals {
-        ArrayList<String> withrawalsHistory = new ArrayList<>();
+    public abstract class Operations {
+        private final String operationHistory;
+
+        public Operations(String operationHistory) {
+            this.operationHistory = operationHistory;
+        }
+
+        @Override
+        public String toString() {
+            return "Operations{" +
+                    "history='" + operationHistory + '\'' +
+                    '}';
+        }
     }
 
-    public static class Payments {
-        ArrayList<String> paymentsHistory = new ArrayList<>();
+    public class Withdrawals extends Operations {
+        public Withdrawals(String operationHistory) {
+            super(operationHistory);
+        }
     }
 
-    public static class Receipts {
-        ArrayList<String> receiptsHistory = new ArrayList<>();
+    public class Payments extends Operations {
+        public Payments(String operationHistory) {
+            super(operationHistory);
+        }
+    }
+
+    public class Receipts extends Operations {
+        public Receipts(String operationHistory) {
+            super(operationHistory);
+        }
     }
 }
