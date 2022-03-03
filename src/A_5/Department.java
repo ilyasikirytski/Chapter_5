@@ -43,13 +43,5 @@ public class Department {
         public ArrayList<String> getPositions() {
             return positions;
         }
-
-        @Override
-        public String toString() {
-            return "Employee{" +
-                    "name='" + name + '\'' +
-                    ", position='" + positions + '\'' +
-                    '}';
-        }
     }
 }
