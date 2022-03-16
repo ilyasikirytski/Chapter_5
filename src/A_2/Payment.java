@@ -18,7 +18,7 @@ public class Payment {
     }
 
     public void buy(int countOfMoney) {
-        if (countOfMoney - totalPrice >= 0) {
+        if (countOfMoney >= totalPrice) {
             System.out.println("Вы купили: ");
             for (Product product : cart) {
                 System.out.println(product.getProductName());
@@ -34,6 +34,14 @@ public class Payment {
         private String productName;
         private int price;
 
+        public Product() {
+        }
+
+        public Product(String productName, int price) {
+            this.productName = productName;
+            this.price = price;
+        }
+
         public String getProductName() {
             return productName;
         }
@@ -45,8 +53,6 @@ public class Payment {
 
     public class Bread extends Product {
         public Bread() {
-            super.productName = "bread";
-            super.price = 3;
         }
     }
 

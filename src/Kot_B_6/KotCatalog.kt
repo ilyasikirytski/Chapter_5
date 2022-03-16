@@ -1,25 +1,33 @@
 package Kot_B_6
 
 class KotCatalog() {
-    private val books = ArrayList<Book>()
+    private val availableBooks = ArrayList<KotBook>()
 
-    fun printRequestHistory(book: Book) {
-        System.out.printf("Книгу: %s, брали следующие пользователи:\n", book.nameOfBook)
-        for (b in books) {
-            if (book.nameOfBook.contains(book.nameOfBook)) {
-                println(book.users)
-            }
+    fun addBooks(vararg books: KotCatalog.KotBook) {
+        availableBooks.addAll(books)
+    }
+
+    fun printRequestHistory(kotBook: KotBook) {
+        println("Книгу: ${kotBook.nameOfBook}, брали следующие пользователи:")
+        println(kotBook.users)
+    }
+
+    fun takeBook(kotBook: KotCatalog.KotBook, user: String) {
+        if (availableBooks.contains(kotBook)) {
+            kotBook.users.add(user)
+            availableBooks.remove(kotBook)
+            println("Книга ${kotBook.nameOfBook}, была взята пользователем $user")
+        } else {
+            println("Книга ${kotBook.nameOfBook}, недоступна")
         }
     }
 
-    fun takeBook(book: Book, user: String) {
-        if (!books.contains(book)) {
-            books.add(book)
-        }
-        book.users.add(user)
+    fun returnBook(kotBook: KotCatalog.KotBook) {
+        availableBooks.add(kotBook)
+        println("Книга ${kotBook.nameOfBook}, возвращена")
     }
 
-    inner class Book(val nameOfBook: String) {
+    inner class KotBook(val nameOfBook: KotBookName) {
         val users = ArrayList<String>()
     }
 }

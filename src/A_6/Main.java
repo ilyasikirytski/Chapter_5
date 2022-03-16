@@ -7,9 +7,11 @@ package A_6;
 public class Main {
     public static void main(String[] args) {
         Catalog catalog = new Catalog();
-        Catalog.Book book = new Catalog.Book("1");
-        Catalog.Book book2 = new Catalog.Book("2");
+        Catalog.Book book = catalog.new Book(BookName.FIRST);
+        Catalog.Book book2 = catalog.new Book(BookName.SECOND);
+        catalog.addBooks(book, book2);
         catalog.takeBook(book, "1");
+        catalog.returnBook(book);
         catalog.takeBook(book, "2");
         catalog.takeBook(book, "3");
         catalog.takeBook(book2, "11");
