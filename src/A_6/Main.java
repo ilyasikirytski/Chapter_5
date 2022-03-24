@@ -10,14 +10,15 @@ public class Main {
         Catalog.Book book = catalog.new Book(BookName.FIRST);
         Catalog.Book book2 = catalog.new Book(BookName.SECOND);
         catalog.addBooks(book, book2);
-        catalog.takeBook(book, "1");
-        catalog.returnBook(book);
-        catalog.takeBook(book, "2");
-        catalog.takeBook(book, "3");
-        catalog.takeBook(book2, "11");
-        catalog.takeBook(book2, "22");
-        catalog.takeBook(book2, "33");
-        catalog.printRequestHistory(book);
-        catalog.printRequestHistory(book2);
+        catalog.takeBook(BookName.FIRST, "1");
+        catalog.returnBook(BookName.FIRST);
+        catalog.takeBook(BookName.FIRST, "2");
+        catalog.takeBook(BookName.SECOND, "3");
+        catalog.takeBook(BookName.SECOND, "11");
+        catalog.takeBook(BookName.SECOND, "22");
+        catalog.returnBook(BookName.SECOND);
+        catalog.takeBook(BookName.SECOND, "33");
+        catalog.printRequestHistory(BookName.FIRST);
+        catalog.printRequestHistory(BookName.SECOND);
     }
 }
